@@ -3,7 +3,11 @@ import React, { FC, useState } from "react";
 import { OrderTypes } from "../../types/order";
 import "./index.css";
 
-const OrderBy: FC = () => {
+type OrderByProps = {
+  onOrderSelection: (order: OrderTypes) => void;
+}
+
+const OrderBy: FC<OrderByProps> = ({ onOrderSelection }) => {
   const [selected, setSelected] = useState(OrderTypes.Random);
 
   const onOrderChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
@@ -12,6 +16,7 @@ const OrderBy: FC = () => {
       e.target.value === OrderTypes.Priority
     ) {
       setSelected(e.target.value);
+      onOrderSelection(e.target.value)
     }
   };
   return (
