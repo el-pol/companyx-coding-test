@@ -7,7 +7,7 @@ interface IOrderContext {
 }
 
 const defaultState = {
-  orderby: OrderTypes.Random,
+  orderBy: OrderTypes.Random,
 };
 
 const OrderContext = React.createContext<IOrderContext>(defaultState);
