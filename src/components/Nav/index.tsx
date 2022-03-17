@@ -2,12 +2,12 @@ import React, { FC } from "react";
 
 import "./index.css";
 
-const Job: FC = () => {
+const Nav: FC = () => {
   return (
     <header className="App-header">
-      <img className="App-header__logo" src="/logo.svg"></img>
+      <img className="App-header__logo" src="/logo.svg" alt="Jobtome Logo"></img>
     </header>
   );
 };
 
-export default Job;
+export default Nav;
