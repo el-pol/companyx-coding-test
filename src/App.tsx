@@ -10,10 +10,13 @@ import "./App.css";
 
 const App: React.FC = () => {
   const [jobs, setJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   const fetchData: () => Promise<void> = async () => {
+    setIsLoading(true)
     const result = await fetch("/jobs.json");
     const data = await result.json();
+    setIsLoading(false)
     setJobs(data);
   };
 
@@ -37,6 +40,7 @@ const App: React.FC = () => {
         }}
       >
         <Nav />
+        {isLoading && <p>Loading...</p>}
         {!!JobList.length && (
           <div data-testid="app-jobs" className="App-jobs">
             <OrderBy />
