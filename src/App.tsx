@@ -32,7 +32,7 @@ const App: React.FC = () => {
     <div className="App">
       <OrderContext.Provider
         value={{
-          orderby: OrderTypes.Random,
+          orderBy: OrderTypes.Random,
           toggleOrder,
         }}
       >
