@@ -3,7 +3,7 @@ import React, { FC, useState } from "react";
 import { OrderTypes } from "../../types/order";
 import "./index.css";
 
-const Job: FC = () => {
+const OrderBy: FC = () => {
   const [selected, setSelected] = useState(OrderTypes.Random);
 
   const onOrderChange: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
@@ -30,4 +30,4 @@ const Job: FC = () => {
   );
 };
 
-export default Job;
+export default OrderBy;
