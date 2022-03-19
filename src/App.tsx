@@ -11,10 +11,13 @@ import "./App.css";
 const App: React.FC = () => {
   const [jobs, setJobs] = useState<JobDefinition[]>([]);
   const [order, setOrder] = useState<OrderTypes>(OrderTypes.Random)
+  const [isLoading, setIsLoading] = useState(true)
 
   const fetchData: () => Promise<void> = async () => {
+    setIsLoading(true)
     const result = await fetch("/jobs.json");
     const data = await result.json();
+    setIsLoading(false)
     setJobs(data);
   };
 
@@ -35,6 +38,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
         <Nav />
+        {isLoading && <div data-testid="app-loader" className="Loader"><p>Loading...</p></div>}
         {!!JobList.length && (
           <div data-testid="app-jobs" className="App-jobs">
             <OrderBy onOrderSelection={setOrder} />

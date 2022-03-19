@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.App-jobs {
+.App-jobs, .Loader {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -21,3 +21,4 @@
   margin-bottom: 2rem;
   margin-top: 16px;
 }
+
