@@ -10,7 +10,7 @@ import "./App.css";
 
 const App: React.FC = () => {
   const [jobs, setJobs] = useState<JobDefinition[]>([]);
-  const [order, setOrder] = useState<OrderTypes>(OrderTypes.Random)
+  const [orderBy, setOrderBy] = useState<OrderTypes>(OrderTypes.Random)
   const [isLoading, setIsLoading] = useState(true)
 
   const fetchData: () => Promise<void> = async () => {
@@ -41,8 +41,8 @@ const App: React.FC = () => {
         {isLoading && <div data-testid="app-loader" className="Loader"><p>Loading...</p></div>}
         {!!JobList.length && (
           <div data-testid="app-jobs" className="App-jobs">
-            <OrderBy onOrderSelection={setOrder} />
-            {order === OrderTypes.Random ? JobList : SortedJobList}
+            <OrderBy onOrderSelection={setOrderBy} />
+            {orderBy === OrderTypes.Random ? JobList : SortedJobList}
           </div>
         )}
     </div>
