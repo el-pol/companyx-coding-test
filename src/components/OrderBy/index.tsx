@@ -19,6 +19,7 @@ const OrderBy: FC<OrderByProps> = ({ onOrderSelection }) => {
       onOrderSelection(e.target.value)
     }
   };
+
   return (
     <div className="App-sortby">
       <span className="App-sortby__label">Sort by: </span>
