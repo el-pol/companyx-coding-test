@@ -16,7 +16,7 @@ const OrderBy: FC = () => {
   };
   return (
     <div className="App-sortby">
-      <span className="App-sortby__label">Sort by: </span>
+      <label htmlFor="filtersortby" className="App-sortby__label">Sort by: </label>
       <select
         className="App-sortby__select"
         id="filtersortby"
