@@ -25,7 +25,7 @@ const JobList: FC<JobListProps> = ({ jobs, orderBy }) => {
   }
 
   return (
-    <ul className="App-joblist">
+    <ul className="App-joblist" data-testid="job-list">
      {getJobs(jobs, orderBy)}
 	</ul>
   );
