@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-import Job from "./components/Job";
 import Nav from "./components/Nav";
 import OrderBy from "./components/OrderBy";
-import OrderContext from "./contexts/OrderContext";
 import { OrderTypes } from "./types/order";
+import JobDefinition from "./types/job";
 
 import "./App.css";
+import JobList from "./components/JobList";
 
 const App: React.FC = () => {
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState<JobDefinition[]>([]);
+  const [orderBy, setOrderBy] = useState<OrderTypes>(OrderTypes.Random)
   const [isLoading, setIsLoading] = useState(true)
 
   const fetchData: () => Promise<void> = async () => {
@@ -20,34 +21,22 @@ const App: React.FC = () => {
     setJobs(data);
   };
 
-  const toggleOrder = (newOrder: string) => console.log(newOrder);
-
   useEffect(() => {
     setTimeout(() => fetchData(), 3000);
   }, []);
 
-  const JobList: React.ReactElement[] = jobs.map((value) => {
-    const { id } = value;
-    return <Job key={id} {...value} />;
-  });
+  
 
   return (
     <div className="App">
-      <OrderContext.Provider
-        value={{
-          orderby: OrderTypes.Random,
-          toggleOrder,
-        }}
-      >
         <Nav />
         {isLoading && <div data-testid="app-loader" className="Loader"><p>Loading...</p></div>}
-        {!!JobList.length && (
+        {!!jobs.length && (
           <div data-testid="app-jobs" className="App-jobs">
-            <OrderBy />
-            {JobList}
+            <OrderBy onOrderSelection={setOrderBy} />
+            <JobList jobs={jobs} orderBy={orderBy} />
           </div>
         )}
-      </OrderContext.Provider>
     </div>
   );
 };
