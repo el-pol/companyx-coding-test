@@ -29,9 +29,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   text-decoration: underline;
-}
-
-.App-job > .App-job__link > .App-job__meta {
+  margin: 0;
 }
 
 .App-job > .App-job__link > .App-job__meta > .App-job__company {
