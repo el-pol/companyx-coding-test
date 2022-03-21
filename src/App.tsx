@@ -30,10 +30,11 @@ const App: React.FC = () => {
     return <Job key={id} {...value} />;
   });
 
-  const SortedJobList: React.ReactElement[] = jobs.sort((a, b) => a.priority - b.priority).map((value) => {
-    const { id } = value;
-    return <Job key={id} {...value} />;
-  });
+  const getSortedJobs = (jobsArray: JobDefinition[]) => {
+    const copyOfArray = [...jobsArray]
+    const sortedArray =  copyOfArray.sort((a, b) => a.priority - b.priority)
+    return ( sortedArray.map((job) => <Job key={job.id} {...job} />) );
+  }
 
   return (
     <div className="App">
@@ -42,7 +43,7 @@ const App: React.FC = () => {
         {!!JobList.length && (
           <div data-testid="app-jobs" className="App-jobs">
             <OrderBy onOrderSelection={setOrderBy} />
-            {orderBy === OrderTypes.Random ? JobList : SortedJobList}
+            {orderBy === OrderTypes.Random ? JobList : getSortedJobs(jobs)}
           </div>
         )}
     </div>
