@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import JobList from "./index";
 import { OrderTypes } from "../../types/order";
 
@@ -12,7 +12,7 @@ const jobsMock = [{
   city: "Lompoc",
   priority: 0,
   company: {
-    name: "Lockman, Wisoky and Harris",
+    name: "First Priority",
   }
    },
   {
@@ -24,7 +24,7 @@ const jobsMock = [{
   city: "Lompoc",
   priority: 1,
   company: {
-    name: "Lockman, Wisoky and Harris",
+    name: "Second Priority",
   },
  },
  {
@@ -36,7 +36,7 @@ const jobsMock = [{
   city: "Lompoc",
   priority: 2,
   company: {
-    name: "Lockman, Wisoky and Harris",
+    name: "Third Priority",
   },
  }
 ];
@@ -53,5 +53,19 @@ test("renders job list with correct number of elements", () => {
 
   expect(jobItem).toHaveLength(jobsMock.length)  
 
+
+});
+
+test("sorts by priority", () => {
+  render(<JobList jobs={jobsMock} orderBy={orderPriority} />);
+  const jobListElement = screen.getByTestId("job-list")
+  const jobItems = screen.queryAllByTestId('company')
+  const firstJobItem = jobItems[0]
+  const secondJobItem = jobItems[1]
+  
+  expect(jobListElement).toBeInTheDocument();
+
+  expect(firstJobItem).toHaveTextContent(/first priority/i)
+  expect(secondJobItem).toHaveTextContent(/second priority/i)
 
 });
