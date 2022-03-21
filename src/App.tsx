@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import Job from "./components/Job";
 import Nav from "./components/Nav";
 import OrderBy from "./components/OrderBy";
 import { OrderTypes } from "./types/order";
 import JobDefinition from "./types/job";
 
 import "./App.css";
+import JobList from "./components/JobList";
 
 const App: React.FC = () => {
   const [jobs, setJobs] = useState<JobDefinition[]>([]);
@@ -25,25 +25,16 @@ const App: React.FC = () => {
     setTimeout(() => fetchData(), 3000);
   }, []);
 
-  const JobList: React.ReactElement[] = jobs.map((value) => {
-    const { id } = value;
-    return <Job key={id} {...value} />;
-  });
-
-  const getSortedJobs = (jobsArray: JobDefinition[]) => {
-    const copyOfArray = [...jobsArray]
-    const sortedArray =  copyOfArray.sort((a, b) => a.priority - b.priority)
-    return ( sortedArray.map((job) => <Job key={job.id} {...job} />) );
-  }
+  
 
   return (
     <div className="App">
         <Nav />
         {isLoading && <div data-testid="app-loader" className="Loader"><p>Loading...</p></div>}
-        {!!JobList.length && (
+        {!!jobs.length && (
           <div data-testid="app-jobs" className="App-jobs">
             <OrderBy onOrderSelection={setOrderBy} />
-            {orderBy === OrderTypes.Random ? JobList : getSortedJobs(jobs)}
+            <JobList jobs={jobs} orderBy={orderBy} />
           </div>
         )}
     </div>
