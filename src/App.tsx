@@ -33,11 +33,15 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    // We slice from the original state, create a new one and generate the 
+    // number of jobs for each page
     const endOffset = itemOffset + itemsPerPage;
     setCurrentJobs(jobs.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(jobs.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, jobs]);
 
+  // Using "any" because React-Pagination's structure is a bit messy
+  // Would investigate the correct type with more time
   const handlePageClick = (event: any) => {
     const newOffset = (event.selected * itemsPerPage) % jobs.length;
     setItemOffset(newOffset);
