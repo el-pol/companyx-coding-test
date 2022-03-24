@@ -53,7 +53,7 @@ Run this command if you want to regenerate the list of our job offers. The new j
 
 - Please make sure to cover your code changes with automated tests, wherever you think this could be useful. While tests will not detect all problems, they can help point out the obvious ones.
 
-- How many different/distinct secret keys can be generated using `wp_generate_passowrd(8)`? Don't worry! We don't use WordPress, but we are happy to understand how you navigate through documentation of packages you don't know (oops, this could be a hint). Please, answer this question in a document named `answer.md` inside the repo.
+- How many different/distinct secret keys can be generated using `wp_generate_password(8)`? Don't worry! We don't use WordPress, but we are happy to understand how you navigate through documentation of packages you don't know (oops, this could be a hint). Please, answer this question in a document named `answer.md` inside the repo.
 
 > PS. Feel free to merge your pull requests in autonomy, we will find them among the pull requests closed, we don’t want you to get lost in conflicts ☺️
 
