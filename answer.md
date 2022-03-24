@@ -1,0 +1,1 @@
+With `wp_generate_password()`, we can generate one random password. It accepts three different parameters: length, special chars, and extra special chars. It will return a string with a randomly generate password. [Click here to read the documentation](https://developer.wordpress.org/reference/functions/wp_generate_password/)
