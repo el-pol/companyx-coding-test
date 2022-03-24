@@ -69,6 +69,8 @@ const App: React.FC = () => {
           previousLabel="< previous"
           containerClassName="Pagination-container"
           activeClassName="Pagination-active"
+          previousClassName="Pagination-cursors"
+          nextClassName="Pagination-cursors"
           pageClassName="Pagination-element"
         />) }
     </div>

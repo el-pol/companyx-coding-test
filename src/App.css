@@ -38,7 +38,7 @@
   font-weight: bold;
 }
 
-.Pagination-element {
+.Pagination-element, .Pagination-cursors {
   cursor: pointer;
 }
 
