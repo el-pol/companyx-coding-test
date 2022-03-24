@@ -10,6 +10,8 @@ import JobDefinition from "./types/job";
 
 import "./App.css";
 
+const ITEMS_PER_PAGE = 10
+
 const App: React.FC = () => {
   const [jobs, setJobs] = useState<JobDefinition[]>([]);
   const [orderBy, setOrderBy] = useState<OrderTypes>(OrderTypes.Random)
@@ -26,24 +28,23 @@ const App: React.FC = () => {
     setIsLoading(false)
     setJobs(data);
   };
-  const itemsPerPage = 10
 
   useEffect(() => {
-    fetchData();
+    setTimeout(() => fetchData(), 3000);
   }, []);
 
   useEffect(() => {
     // We slice from the original state, create a new one and generate the 
     // number of jobs for each page
-    const endOffset = itemOffset + itemsPerPage;
+    const endOffset = itemOffset + ITEMS_PER_PAGE;
     setCurrentJobs(jobs.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(jobs.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, jobs]);
+    setPageCount(Math.ceil(jobs.length / ITEMS_PER_PAGE));
+  }, [itemOffset, jobs]);
 
   // Using "any" because React-Pagination's structure is a bit messy
   // Would investigate the correct type with more time
   const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * itemsPerPage) % jobs.length;
+    const newOffset = (event.selected * ITEMS_PER_PAGE) % jobs.length;
     setItemOffset(newOffset);
   };
   
