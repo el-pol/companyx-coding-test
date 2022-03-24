@@ -15,11 +15,11 @@ const JobList: FC<JobListProps> = ({ jobs, orderBy }) => {
   const getJobs = (jobsArray: JobDefinition[], orderBy: OrderTypes) => {
     const copyOfArray = [...jobsArray]
     const sortedArray =  copyOfArray.sort((a, b) => a.priority - b.priority)
-	if (orderBy === OrderTypes.Random) {
-		return jobs.map((job) => <Job key={job.id} {...job} />) 
-	} else {
-        return ( 
-		 sortedArray.map((job) => <Job key={job.id} {...job} />) 
+	  if (orderBy === OrderTypes.Random) {
+		  return jobs.map((job) => <Job key={job.id} {...job} />) 
+	  } else {
+      return ( 
+		    sortedArray.map((job) => <Job key={job.id} {...job} />) 
 		);
 	}
   }
