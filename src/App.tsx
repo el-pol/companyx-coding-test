@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import ReactPaginate from 'react-paginate';
-import Nav from "./components/Nav";
+import Header from "./components/Nav";
 import OrderBy from "./components/OrderBy";
 import JobList from "./components/JobList";
 
@@ -51,14 +51,15 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-        <Nav />
+        <Header />
         {isLoading && <div data-testid="app-loader" className="Loader"><p>Loading...</p></div>}
-        {!!jobs.length && (
-          <div data-testid="app-jobs" className="App-jobs">
+        {!!jobs.length && !isLoading && (
+          <main data-testid="app-jobs" className="App-jobs">
             <OrderBy onOrderSelection={setOrderBy} />
             <JobList jobs={currentJobs} orderBy={orderBy} />
-          </div>
+          </main>
         )}
+        {!!jobs.length && !isLoading && (
         <ReactPaginate
           breakLabel="..."
           nextLabel="next >"
@@ -69,7 +70,7 @@ const App: React.FC = () => {
           containerClassName="Pagination-container"
           activeClassName="Pagination-active"
           pageClassName="Pagination-element"
-        />
+        />) }
     </div>
   );
 };
