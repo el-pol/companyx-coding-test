@@ -61,6 +61,8 @@ const App: React.FC = () => {
           pageRangeDisplayed={5}
           pageCount={pageCount}
           previousLabel="< previous"
+          containerClassName="Pagination-container"
+          activeClassName="Pagination-active"
         />
     </div>
   );
