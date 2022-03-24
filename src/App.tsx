@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 
+import ReactPaginate from 'react-paginate';
 import Nav from "./components/Nav";
 import OrderBy from "./components/OrderBy";
+import JobList from "./components/JobList";
+
 import { OrderTypes } from "./types/order";
 import JobDefinition from "./types/job";
-import ReactPaginate from 'react-paginate';
-
 
 import "./App.css";
-import JobList from "./components/JobList";
 
 const App: React.FC = () => {
   const [jobs, setJobs] = useState<JobDefinition[]>([]);
-  const [currentJobs, setCurrentJobs] = useState<JobDefinition[]>([]);
   const [orderBy, setOrderBy] = useState<OrderTypes>(OrderTypes.Random)
   const [isLoading, setIsLoading] = useState(true)
+  // Next states are related to the pagination component
+  const [currentJobs, setCurrentJobs] = useState<JobDefinition[]>([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
@@ -32,18 +33,13 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch items from another resources.
     const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     setCurrentJobs(jobs.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(jobs.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, jobs]);
 
   const handlePageClick = (event: any) => {
     const newOffset = (event.selected * itemsPerPage) % jobs.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
   
