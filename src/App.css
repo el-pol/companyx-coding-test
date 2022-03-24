@@ -10,15 +10,35 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   width: 615px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 16px auto 2rem auto;
   padding: 16px;
   background: #fff;
-  -webkit-box-shadow: 0 2px 15px rgb(0 0 0 / 10%);
   box-shadow: 0 2px 15px rgb(0 0 0 / 10%);
   border-radius: 4px;
   padding: 20px;
-  margin-bottom: 2rem;
-  margin-top: 16px;
+}
+
+.Pagination-container {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  background: white;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 615px;
+  margin: auto;
+  padding: 20px;
+}
+
+.Pagination-active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.Pagination-element, .Pagination-cursors {
+  cursor: pointer;
 }
 
