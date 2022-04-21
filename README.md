@@ -1,4 +1,4 @@
-# Jobtome Frontend test
+# CompanyX Frontend test
 
 Hi! Thanks for applying with us; we are thrilled about this! Let's quickly introduce you to the test. The project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
